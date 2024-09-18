@@ -25,6 +25,7 @@ using Microsoft.Win32;
 using MQTTnet;
 using WK.Libraries.HotkeyListenerNS;
 using Serilog.Core;
+using Microsoft.Web.WebView2;
 
 namespace HASS.Agent
 {

@@ -463,13 +463,13 @@ namespace HASS.Agent.Functions
         /// Shows a new webview form near the tray icon
         /// </summary>
         /// <param name="webViewInfo"></param>
-        internal static void LaunchTrayIconWebView(WebViewInfo webViewInfo)
+        internal static void LaunchTrayIconWebView(WebViewInfo webViewInfo, int screenIndex = 0)
         {
             // are we previewing?
             if (webViewInfo.IsTrayIconPreview)
             {
                 // yep, show as configured
-                LaunchTrayIconCustomWebView(webViewInfo);
+                LaunchTrayIconCustomWebView(webViewInfo, screenIndex);
 
                 // done
                 return;
@@ -479,17 +479,17 @@ namespace HASS.Agent.Functions
             if (Variables.AppSettings.TrayIconWebViewBackgroundLoading)
             {
                 // yep
-                LaunchTrayIconBackgroundLoadedWebView();
+                LaunchTrayIconBackgroundLoadedWebView(screenIndex);
 
                 // done
                 return;
             }
 
             // show a new webview from within the UI thread
-            LaunchTrayIconCustomWebView(webViewInfo);
+            LaunchTrayIconCustomWebView(webViewInfo, screenIndex);
         }
 
-        private static void LaunchTrayIconBackgroundLoadedWebView()
+        private static void LaunchTrayIconBackgroundLoadedWebView(int screenIndex)
         {
             Variables.MainForm.Invoke(new MethodInvoker(delegate
             {
@@ -501,11 +501,11 @@ namespace HASS.Agent.Functions
             }));
         }
 
-        private static void LaunchTrayIconCustomWebView(WebViewInfo webViewInfo)
+        private static void LaunchTrayIconCustomWebView(WebViewInfo webViewInfo, int screenIndex = 0)
         {
             Variables.MainForm.Invoke(new MethodInvoker(delegate
             {
-                var x = Screen.PrimaryScreen.WorkingArea.Width - webViewInfo.Width;
+                var x = Screen.PrimaryScreen.WorkingArea.Width - webViewInfo.Width + 500;
                 var y = Screen.PrimaryScreen.WorkingArea.Height - webViewInfo.Height;
 
                 webViewInfo.X = x;

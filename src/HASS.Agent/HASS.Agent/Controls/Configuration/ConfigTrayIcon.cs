@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
-using HASS.Agent.Functions;
+﻿using HASS.Agent.Functions;
 using HASS.Agent.Models.Internal;
-using Microsoft.UI;
+using System.Diagnostics;
 
 namespace HASS.Agent.Controls.Configuration
 {
@@ -19,10 +18,10 @@ namespace HASS.Agent.Controls.Configuration
         private void ConfigTrayIcon_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(TbWebViewUrl.Text)) TbWebViewUrl.Text = Variables.AppSettings.HassUri;
-            InitMultiScreenConfig();
+            InitMultiScreenConfig(Variables.AppSettings.TrayIconWebViewScreen);
         }
 
-        private void InitMultiScreenConfig()
+        private void InitMultiScreenConfig(int selectedScreenIndex = 0)
         {
             var displays = Screen.AllScreens;
             int ix = 0;
@@ -41,9 +40,8 @@ namespace HASS.Agent.Controls.Configuration
                 ix++;
             }
 
-            NumWebViewScreen.SelectedIndex = 0;
-            SelectedScreen = SelectedScreen;
-
+            NumWebViewScreen.SelectedIndex = selectedScreenIndex;
+            SelectedScreen = selectedScreenIndex;
         }
 
         private void CbDefaultMenu_CheckedChanged(object sender, EventArgs e)

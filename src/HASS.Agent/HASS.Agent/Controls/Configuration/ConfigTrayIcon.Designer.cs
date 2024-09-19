@@ -44,7 +44,7 @@ namespace HASS.Agent.Controls.Configuration
             CbWebViewKeepLoaded = new CheckBox();
             LblInfo2 = new Label();
             CbWebViewShowMenuOnLeftClick = new CheckBox();
-            domainUpDown1 = new DomainUpDown();
+            NumWebViewScreen = new DomainUpDown();
             ((System.ComponentModel.ISupportInitialize)NumWebViewWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NumWebViewHeight).BeginInit();
             SuspendLayout();
@@ -156,9 +156,9 @@ namespace HASS.Agent.Controls.Configuration
             BtnShowWebViewPreview.Enabled = false;
             BtnShowWebViewPreview.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             BtnShowWebViewPreview.ForeColor = Color.FromArgb(241, 241, 241);
-            BtnShowWebViewPreview.Location = new Point(405, 348);
+            BtnShowWebViewPreview.Location = new Point(494, 348);
             BtnShowWebViewPreview.Name = "BtnShowWebViewPreview";
-            BtnShowWebViewPreview.Size = new Size(206, 26);
+            BtnShowWebViewPreview.Size = new Size(117, 26);
             BtnShowWebViewPreview.Style.BackColor = Color.FromArgb(63, 63, 70);
             BtnShowWebViewPreview.Style.FocusedBackColor = Color.FromArgb(63, 63, 70);
             BtnShowWebViewPreview.Style.FocusedForeColor = Color.FromArgb(241, 241, 241);
@@ -291,14 +291,14 @@ namespace HASS.Agent.Controls.Configuration
             CbWebViewShowMenuOnLeftClick.Text = Languages.ConfigTrayIcon_CbWebViewShowMenuOnLeftClick;
             CbWebViewShowMenuOnLeftClick.UseVisualStyleBackColor = true;
             // 
-            // domainUpDown1
+            // NumWebViewScreen
             // 
-            domainUpDown1.Location = new Point(317, 380);
-            domainUpDown1.Name = "domainUpDown1";
-            domainUpDown1.Size = new Size(120, 23);
-            domainUpDown1.TabIndex = 78;
-            domainUpDown1.Text = "domainUpDown1";
-            domainUpDown1.SelectedItemChanged += domainUpDown1_SelectedItemChanged;
+            NumWebViewScreen.Location = new Point(368, 348);
+            NumWebViewScreen.Name = "domainUpDown1";
+            NumWebViewScreen.Size = new Size(120, 23);
+            NumWebViewScreen.TabIndex = 78;
+            NumWebViewScreen.Text = "domainUpDown1";
+            NumWebViewScreen.SelectedItemChanged += domainUpDown1_SelectedItemChanged;
             // 
             // ConfigTrayIcon
             // 
@@ -308,7 +308,7 @@ namespace HASS.Agent.Controls.Configuration
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(45, 45, 48);
-            Controls.Add(domainUpDown1);
+            Controls.Add(NumWebViewScreen);
             Controls.Add(CbWebViewShowMenuOnLeftClick);
             Controls.Add(LblInfo2);
             Controls.Add(CbWebViewKeepLoaded);
@@ -349,6 +349,6 @@ namespace HASS.Agent.Controls.Configuration
         internal CheckBox CbWebViewKeepLoaded;
         internal Label LblInfo2;
         internal CheckBox CbWebViewShowMenuOnLeftClick;
-        private DomainUpDown domainUpDown1;
+        internal DomainUpDown NumWebViewScreen;
     }
 }

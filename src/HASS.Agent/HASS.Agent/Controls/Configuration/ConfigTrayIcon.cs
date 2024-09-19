@@ -6,6 +6,10 @@ namespace HASS.Agent.Controls.Configuration
 {
     public partial class ConfigTrayIcon : UserControl
     {
+        private int _selectedScreen = 0;
+
+        internal int SelectedScreen { get => _selectedScreen; set { _selectedScreen = value; } }
+
         public ConfigTrayIcon()
         {
             InitializeComponent();
@@ -14,6 +18,11 @@ namespace HASS.Agent.Controls.Configuration
         private void ConfigTrayIcon_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(TbWebViewUrl.Text)) TbWebViewUrl.Text = Variables.AppSettings.HassUri;
+            InitMultiScreenConfig();
+        }
+
+        private void InitMultiScreenConfig()
+        {
             var displays = Screen.AllScreens;
             int ix = 0;
             int primaryIx = -1;
@@ -27,18 +36,13 @@ namespace HASS.Agent.Controls.Configuration
                     label += " (Primary)";
                     primaryIx = ix;
                 }
-                domainUpDown1.Items.Add(label);
+                NumWebViewScreen.Items.Add(label);
                 ix++;
             }
 
-            // set preselected to first entry or primary screen entry
-            if (primaryIx < 0)
-            {
-                domainUpDown1.SelectedIndex = 0;
-            } else
-            {
-                domainUpDown1.SelectedIndex = primaryIx;
-            }
+            NumWebViewScreen.SelectedIndex = 0;
+            SelectedScreen = SelectedScreen;
+
         }
 
         private void CbDefaultMenu_CheckedChanged(object sender, EventArgs e)
@@ -71,7 +75,7 @@ namespace HASS.Agent.Controls.Configuration
                 IsTrayIconPreview = true
             };
 
-            HelperFunctions.LaunchTrayIconWebView(webView, domainUpDown1.SelectedIndex);
+            HelperFunctions.LaunchTrayIconWebView(webView, NumWebViewScreen.SelectedIndex);
         }
 
         private void BtnWebViewReset_Click(object sender, EventArgs e)
@@ -82,7 +86,7 @@ namespace HASS.Agent.Controls.Configuration
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
-
+            SelectedScreen = (sender as DomainUpDown).SelectedIndex;
         }
     }
 }

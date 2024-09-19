@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using HASS.Agent.Functions;
 using HASS.Agent.Models.Internal;
+using Microsoft.UI;
 
 namespace HASS.Agent.Controls.Configuration
 {
@@ -74,7 +75,7 @@ namespace HASS.Agent.Controls.Configuration
                 IsTrayIconWebView = true,
                 IsTrayIconPreview = true
             };
-
+            Debug.WriteLine("X-Coordinate " + webView.X);
             HelperFunctions.LaunchTrayIconWebView(webView, NumWebViewScreen.SelectedIndex);
         }
 

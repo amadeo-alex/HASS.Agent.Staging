@@ -424,7 +424,7 @@ namespace HASS.Agent.Functions
         /// <summary>
         /// Prepares and loads the tray icon's webview
         /// </summary>
-        internal static void PrepareTrayIconWebView()
+        internal static void PrepareTrayIconWebView(int screenIndex = 0)
         {
             // prepare the webview info
             var webViewInfo = new WebViewInfo
@@ -435,8 +435,8 @@ namespace HASS.Agent.Functions
                 IsTrayIconWebView = true
             };
 
-            var x = Screen.PrimaryScreen.WorkingArea.Width - webViewInfo.Width;
-            var y = Screen.PrimaryScreen.WorkingArea.Height - webViewInfo.Height;
+            var x = Screen.AllScreens[screenIndex].Bounds.Right - webViewInfo.Width;
+            var y = Screen.AllScreens[screenIndex].Bounds.Bottom - webViewInfo.Height;
 
             webViewInfo.X = x;
             webViewInfo.Y = y;
@@ -505,8 +505,8 @@ namespace HASS.Agent.Functions
         {
             Variables.MainForm.Invoke(new MethodInvoker(delegate
             {
-                var x = Screen.PrimaryScreen.WorkingArea.Width - webViewInfo.Width + 500;
-                var y = Screen.PrimaryScreen.WorkingArea.Height - webViewInfo.Height;
+                var x = Screen.AllScreens[screenIndex].Bounds.Right - webViewInfo.Width;
+                var y = Screen.AllScreens[screenIndex].Bounds.Bottom - webViewInfo.Height;
 
                 webViewInfo.X = x;
                 webViewInfo.Y = y;
